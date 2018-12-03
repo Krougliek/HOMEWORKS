@@ -11,3 +11,31 @@ if text_list==new_text:
     print('Эта строка является палиндромом')
 else:
     print('Эта строка не является палиндромом')
+    
+    
+    
+ #декоратор, который замеряет время выполнения функции
+ 
+ import time
+
+def my_decorator(func):
+    def inner(*args):
+        print('сейчас замеряем время вычисления')
+        start_time = time.time()
+        result = func(*args)
+        stop_time = time.time()
+        print('Время вычисления: {}'.format(stop_time - start_time))
+        return result
+    return inner
+#введите число, до которого хотите сосчитать
+n=int(input('Посчитаем числа от 1 до '))
+
+a=range(1,n+1) 
+def summa(*args):
+    
+    return(sum(a))
+    
+s=my_decorator(summa)
+print('А это сам результат:',s(a))
+    
+    
