@@ -1,0 +1,13 @@
+
+#на map filter reduce написать программу, которая проверяет, является ли строка палиндромом
+#строку писать без знаков препинания
+
+
+input_text = str(input().lower())
+text_list=list(map(lambda x:x, filter(lambda i:i!=' ', input_text)))
+new_text=list(reversed(text_list))
+print(new_text)
+if text_list==new_text:
+    print('Эта строка является палиндромом')
+else:
+    print('Эта строка не является палиндромом')
