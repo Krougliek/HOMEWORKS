@@ -38,4 +38,140 @@ def summa(*args):
 s=my_decorator(summa)
 print('А это сам результат:',s(a))
     
-    
+#включить и выключить декоратор, которые замеряет время выполнения функции
+   
+
+import time
+
+  
+
+def my_decorator(func,enabled=True):
+
+    if enabled is True:
+
+        def inner(*args):
+
+            print('сейчас замеряем время вычисления')
+
+            start_time = time.time()
+            
+            
+            
+ #три декоратора, которые вызываюся последовательно
+ 
+ def my_shiny_new_decorator_one(function_to_decorate):
+
+    def the_wrapper_one(x,y):
+
+        print("Это работает первый декоратор")
+
+        result=function_to_decorate(7,8)
+
+        print("Первый результат=",result)
+
+        return('первый декоратор завершил работу\n')
+
+    return the_wrapper_one
+
+ 
+
+def my_shiny_new_decorator_two(function_to_decorate):
+
+    def the_wrapper_two(x,y):
+
+        print("Это работает второй декоратор")
+
+        result=function_to_decorate(x,y)
+
+        print("Второй результат=",result)
+
+        return('второй декоратор завершил работу\n')
+
+    return the_wrapper_two
+
+  
+
+def my_shiny_new_decorator_three(function_to_decorate):
+
+    def the_wrapper_three(x,y):
+
+        print("Это работает третий декоратор")
+
+        result=function_to_decorate(10,9)
+
+        print("Третий результат=",result)
+
+        return('третий декоратор завершил работу\n')
+
+    return the_wrapper_three     
+
+ 
+
+def stand_alone_function(x,y):
+
+    return x*y
+
+    print("Я простая одинокая функция, меня все время изменяет декоратор")
+
+
+
+a=my_shiny_new_decorator_one(stand_alone_function)
+
+b=my_shiny_new_decorator_two(stand_alone_function)
+
+c=my_shiny_new_decorator_three(stand_alone_function)
+
+ 
+
+print(a(3,8))
+
+print(b(23,8))
+
+print(c(6,7))
+
+
+            
+
+            result = func(*args)
+
+            stop_time = time.time()
+
+            print('Время вычисления: {}'.format(stop_time - start_time))
+
+            return result
+
+      
+
+        return inner
+
+    else:
+
+        print('Декоратор отключен, зайдите позже')
+
+   
+
+#введите число, до которого хотите сосчитать
+
+ 
+
+n=int(input('Посчитаем числа от 1 до '))
+
+ 
+
+a=range(1,n+1)
+
+ 
+
+def summa(*args):
+
+    return(sum(a))
+      
+
+s=my_decorator(summa,enabled=False)#включает и отключает декоратор
+
+print('А это сам результат:',s(a))
+
+
+
+
+
