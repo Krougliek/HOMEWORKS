@@ -1,0 +1,104 @@
+#раздача карт в руку игроку
+
+#задача на классы
+
+
+from random import shuffle
+ 
+
+class AbstractCard():
+
+    def __init__(self, rank, suit):
+
+        self.rank = rank
+
+        self.suit = suit
+
+    #магический метод представления объекта класса в виде строки
+
+    def __str__(self):
+
+        return "%s%s" % (self.rank, self.suit)
+     
+
+class Card(AbstractCard):
+
+    def __init__(self, rank, suit):
+
+        self.rank = rank
+
+        self.suit = suit       
+
+class Jocker(AbstractCard):
+
+    def __init__(self, rank):
+
+        self.rank = Jocker     
+
+class Hand():
+
+    def __init__(self, name):
+
+        self.name = name
+
+        self.cards = []
+
+    def add_card(self, card):
+     
+
+        self.cards.append(card)
+
+     
+    def __str__(self):
+
+        text = "%s Всего в руке:\n" % self.name
+
+        for card in self.cards:
+
+            text += str(card) + " "
+
+        return text
+
+
+class Deck():
+
+    def __init__(self):
+
+       
+        ranks = ['2','3','4','5','6','7','8','9','T','В','Д','K','Т']
+
+        suits = ['Бубны','Трефы','Червы','Пики']
+
+        self.cards = [AbstractCard(r,s) for r in ranks for s in suits]
+
+        shuffle(self.cards)
+
+
+    def deal_card(self):
+       
+        return self.cards.pop()
+
+
+def new_game():
+
+    new_deck = Deck()
+
+    player_hand = Hand("Игрок1")
+
+#сдается 6 карт
+
+   player_hand.add_card(new_deck.deal_card())
+
+    player_hand.add_card(new_deck.deal_card())
+
+    player_hand.add_card(new_deck.deal_card())
+
+    player_hand.add_card(new_deck.deal_card())
+
+    player_hand.add_card(new_deck.deal_card())
+
+    player_hand.add_card(new_deck.deal_card())
+
+    print(player_hand)
+
+new_game()
